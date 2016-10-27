@@ -24,6 +24,7 @@ for DIR in $DIRS ; do
     fi
     echo "Packaging Directory $DIR"
     cd $CWD/$DIR 
+    touch manifest.webapp
     VERS=`npm version | grep $PKG | awk -F: '{print $2}'   | awk -F\' '{print $2}'`
     echo "Version ${VERS}"
     JQ="'to_entries |   map(if .key == \"version\"  then . + {\"value\":\"$VERS\"}   else .  end ) |  from_entries'"
